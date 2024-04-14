@@ -1,9 +1,9 @@
 trigger:
  - main
 stages:
-  - stage: Build-stage
+  - stage: Buildstage
     jobs:
-     - job: Build-job
+     - job: Build_job
        pool: 
          vmImage: 'ubuntu-latest'
        steps:

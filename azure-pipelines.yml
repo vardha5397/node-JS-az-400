@@ -17,6 +17,13 @@ stages:
          - task: CmdLine@2
            inputs:
              script: 'ls -al'
+         - task: CopyFiles@2
+           inputs:
+             SourceFolder: '$(Build.SourcesDirectory)'
+             Contents: |
+               src/*
+               public/*
+             TargetFolder: '$(Build.ArtifactStagingDirectory)'
          - task: PublishBuildArtifacts@1
            inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'

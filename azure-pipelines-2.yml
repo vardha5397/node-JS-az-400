@@ -24,3 +24,20 @@ stages:
                  script: |
                    pwd
                    ls -al
+             - task: CopyFiles@2
+               inputs:
+                 SourceFolder: '$(Build.SourcesDirectory)'
+                 Contents: |
+                   src/*
+                   public/*
+                 TargetFolder: '$(Build.ArtifactStagingDirectory)'
+             - task: CmdLine@2
+               inputs:
+                 script: |
+                   pwd
+                   ls -al
+             - task: PublishBuildArtifacts@1
+               inputs:
+                 PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+                 ArtifactName: 'drop'
+                 publishLocation: 'Container'

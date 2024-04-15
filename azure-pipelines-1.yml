@@ -1,0 +1,26 @@
+trigger:
+  - main
+stages:
+    - stage: Build Stage
+      jobs:
+        - job: Build_Job
+          pool:
+            vmImage: 'ubuntu-latest'
+          steps:
+            - task: Npm@1
+              inputs:
+                command: 'install'
+            - task: CmdLine@2
+              inputs:
+                script: |
+                  pwd
+                  ls -al
+            - task: Npm@1
+              inputs:
+                command: 'custom'
+                customCommand: 'run build'
+            - task: CmdLine@2
+              inputs:
+                script: |
+                  pwd
+                  ls -al

@@ -41,3 +41,13 @@ stages:
                  PathtoPublish: '$(Build.ArtifactStagingDirectory)'
                  ArtifactName: 'drop'
                  publishLocation: 'Container'
+    - stage: DeployStage
+      jobs:
+        - job: DownloadJob
+          steps:
+            - task: DownloadBuildArtifacts@1
+              inputs:
+                buildType: 'current'
+                downloadType: 'single'
+                artifactName: 'drop'
+                downloadPath: '$(System.ArtifactsDirectory)'
